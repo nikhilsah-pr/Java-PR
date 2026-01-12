@@ -37,8 +37,7 @@ public class Bill
         System.out.println("| -- | ------------ | --------- | --------  |\r");
 
     }
-    public static class Parcel
-    {
+    public static class Parcel {
     public int sum;
     public Double tt;
     public String arn[];
@@ -86,6 +85,10 @@ public class Bill
             
             System.out.println("Enter no of "+arrn[q-1]+" quantities");
             q1=in.nextInt();
+            if(q1<=arrq[i])
+                break;
+            else
+                q1=0;
             arq[n]=q1;
             ap[n]=arrp[q-1];
             arp[n]=arrp[q-1]*q1;
@@ -95,42 +98,30 @@ public class Bill
         }
     
         tt=sum+(sum*0.05);
-        System.out.println("Your total Bill Without tax is = "+sum);
-        System.out.println("Your bill with 5% GST is : "+tt);
+        //System.out.println("Your total Bill Without tax is = "+sum);
+        //System.out.println("Your bill with 5% GST is : "+tt);
         return new Parcel(sum, tt, arn, arq, arp, ap, q);
     }
     public static void invoice()
     {
         Parcel result = Bill.qty();
         System.out.println("Items in the cart");
-        for(int i=0;i<result.q;i++)
+        for(int i=0;i<((result.q)-2);i++)
         {
-            System.out.println(result.arn[i]+" x "+result.arq[i]+"@"+result.ap[i]+" = "+result.arp[i]);//  From here
+            System.out.println(result.arn[i]+" x "+result.arq[i]+" @ "+result.ap[i]+" = "+result.arp[i]);
         }
-        System.out.println(result.sum);
-        System.out.println(result.tt);
+        System.out.println("Your total Bill Without tax is = "+(result.sum));
+        System.out.println("Your bill with 5% GST is : "+(result.tt));
        
     }
-    /*public static int qty(int x)
-    {
-        int arr[] ={1,2,3,4,5,6,7,8,9,10};
-        return arr[x];
-    }  */
     public static void main(String[] args)
     {
         Scanner in =new Scanner (System.in); 
-        Bill.time();
+        //Bill.time();
+        //Bill.welcome();
+        Bill.items();
         Bill.invoice();
-        System.out.println("Github check");
-        /*System.out.println("Enter no");
-        int x;
-        x=in.nextInt();
-        System.out.println(bill.qty(x));
-        bill.items();
-        bill.time();
-        in.nextLine();
-        bill.welcome();
-        */
+        System.out.println("end");
 
     }
 }
