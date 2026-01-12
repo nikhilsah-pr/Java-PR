@@ -121,6 +121,7 @@ public class Bill
         Scanner in =new Scanner (System.in); 
         Bill.time();
         Bill.invoice();
+        System.out.println("Github check");
         /*System.out.println("Enter no");
         int x;
         x=in.nextInt();
