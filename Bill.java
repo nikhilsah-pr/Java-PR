@@ -4,8 +4,21 @@ import java.time.format.DateTimeFormatter;
 
 public class Bill
 {
+    public static void clearScreen() 
+    {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+    }
     public static void header()
-    {}
+    {
+        System.out.println("===============================================");
+        System.out.println("      Welcome to Smart Store Billing System    ");
+        System.out.println("===============================================");
+        System.out.println("Browse our products and add items to your cart");
+        System.out.println("by selecting the corresponding Product ID.");
+        System.out.println("===============================================");
+
+    }
     public static void time()
     {
         LocalDateTime now = LocalDateTime.now();
@@ -59,9 +72,8 @@ public class Bill
         this.n=n;
 
     }
-    }
-    
-    public static Parcel qty()
+    }   
+    public static Parcel accqty()
     {
         Scanner in=new Scanner(System.in);
         int arri[] ={1,2,3,4,5,6,7,8,9,10};
@@ -82,7 +94,7 @@ public class Bill
         x=in.nextInt();
         for(int i=1;i<=x;i++)
         {           
-            System.out.println("Enter product ID for item \" + (i + 1) + \" in your cart: ");
+            System.out.println("Enter product ID for item " +i+ " in your cart: ");
             q=in.nextInt();
             arn[n]=arrn[q-1];
             
@@ -101,26 +113,41 @@ public class Bill
         //System.out.println("Your bill with 5% GST is : "+tt);
         return new Parcel(sum, tt, arn, arq, arp, ap, n);
     }
-    public static void invoice()
+    public static void disqty()
     {
-        Parcel result = Bill.qty();
+        Parcel result = Bill.accqty();
+
+        
+       // Thread.sleep(2000);
+        clearScreen();
+        Bill.welcome();
+        System.out.println();
+        Bill.time();
+        System.out.println();
         System.out.println("Purchase Details");
         for(int i=0;i<result.n;i++)
         {
             System.out.println(result.arn[i]+" x "+result.arq[i]+" @ "+result.ap[i]+" = "+result.arp[i]);
         }
-        System.out.println("Subtotal (excluding tax): ₹"+(result.sum));
-        System.out.println("Gross amount (5% GST included): ₹"+(result.tt));
-       
+        System.out.println();
+        System.out.println("Subtotal (excluding tax): "+(result.sum)+" Rupees ");
+        System.out.println();
+        System.out.println("Gross amount (5% GST included): "+(result.tt)+" Rupees ");
+        System.out.println();
+        System.out.println("================================");
+        System.out.println("   Thank You! Visit Again 😊");
+        System.out.println("================================");
+        System.exit(0);
+   
     }
     public static void main(String[] args)
     {
         Scanner in =new Scanner (System.in); 
-        //Bill.time();
-        //Bill.welcome();
+        Bill.header();
         Bill.items();
-        Bill.invoice();
-        System.out.println("end");
-
+        Bill.disqty();
+        System.out.print("Press 0 to exit: ");
+        in.nextInt();
+        System.exit(0);
     }
 }
