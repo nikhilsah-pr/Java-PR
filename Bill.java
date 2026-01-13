@@ -4,6 +4,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Bill
 {
+    public static void pause(int millis) {
+    try {
+        Thread.sleep(millis);
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+    }
+    }
     public static void clearScreen() 
     {
     System.out.print("\033[H\033[2J");
@@ -117,8 +124,8 @@ public class Bill
     {
         Parcel result = Bill.accqty();
 
-        
-       // Thread.sleep(2000);
+        System.out.println("Loading products...");
+        pause(4000);
         clearScreen();
         Bill.welcome();
         System.out.println();
@@ -145,9 +152,12 @@ public class Bill
         Scanner in =new Scanner (System.in); 
         Bill.header();
         Bill.items();
+        System.out.println("Processing...");
+        pause(3000);
         Bill.disqty();
         System.out.print("Press 0 to exit: ");
         in.nextInt();
         System.exit(0);
+        System.out.println(" Completed ");
     }
 }
