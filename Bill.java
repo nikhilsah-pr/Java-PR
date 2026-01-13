@@ -4,6 +4,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Bill
 {
+    public static void header()
+    {}
     public static void time()
     {
         LocalDateTime now = LocalDateTime.now();
@@ -12,13 +14,13 @@ public class Bill
     }
     public static void welcome()
     {
-        System.out.println("================================");
-        System.out.println("======== Welcome to.... ========");
-        System.out.println("========== Smart Store =========");
-        System.out.println("Address : Bistupur, Jamshedpur ");
-        System.out.println("Contact : 0657 976976 ");
-        System.out.println("GST No  : 20ABCDE1234F1Z5");
-        System.out.println("================================");
+        System.out.println("------------------------------------------------");
+        System.out.println("                 SMART STORE                   ");
+        System.out.println("------------------------------------------------");
+        System.out.println(" Address : Bistupur, Jamshedpur");
+        System.out.println(" Contact : 0657-976976");
+        System.out.println(" GSTIN   : 20ABCDE1234F1Z5");
+        System.out.println("------------------------------------------------");
     }
     public static void items()
     {
@@ -44,8 +46,9 @@ public class Bill
     public int arq[];
     public int arp[];
     public int ap[];
-    public int q;
-    public Parcel(int sum, Double tt, String arn[], int arq[], int arp[], int ap[], int q)
+    public int n;
+    public int count;
+    public Parcel(int sum, Double tt, String arn[], int arq[], int arp[], int ap[], int n)
     {
         this.sum=sum;
         this.tt=tt;
@@ -53,7 +56,7 @@ public class Bill
         this.arq=arq;
         this.arp=arp;
         this.ap=ap;
-        this.q=q;
+        this.n=n;
 
     }
     }
@@ -70,7 +73,7 @@ public class Bill
         int arp[]=new int[50];
         int ap[]=new int[50];
         int n=0;
-        System.out.println("Enter no of items");
+        System.out.println("Enter the quantity of items to be billed: ");
         int x;
         int q=0;
         int q1;
@@ -78,21 +81,17 @@ public class Bill
         Double tt;
         x=in.nextInt();
         for(int i=1;i<=x;i++)
-        {
-            System.out.println("Enter your "+(i)+" item in cart acc to product id");
+        {           
+            System.out.println("Enter product ID for item \" + (i + 1) + \" in your cart: ");
             q=in.nextInt();
-            arn[n]=arrn[q];
+            arn[n]=arrn[q-1];
             
             System.out.println("Enter no of "+arrn[q-1]+" quantities");
             q1=in.nextInt();
-            if(q1<=arrq[i])
-                break;
-            else
-                q1=0;
             arq[n]=q1;
             ap[n]=arrp[q-1];
             arp[n]=arrp[q-1]*q1;
-            System.out.println("price of this product of "+q1+" qty is "+(arrp[q-1]*q1)+" rupees ");
+            System.out.println("price of this product of "+q1+" qty is "+(arrp[q-1]*q1)+" rupees");
             sum+=(arrp[q-1]*q1);
             n++;
         }
@@ -100,18 +99,18 @@ public class Bill
         tt=sum+(sum*0.05);
         //System.out.println("Your total Bill Without tax is = "+sum);
         //System.out.println("Your bill with 5% GST is : "+tt);
-        return new Parcel(sum, tt, arn, arq, arp, ap, q);
+        return new Parcel(sum, tt, arn, arq, arp, ap, n);
     }
     public static void invoice()
     {
         Parcel result = Bill.qty();
-        System.out.println("Items in the cart");
-        for(int i=0;i<((result.q)-2);i++)
+        System.out.println("Purchase Details");
+        for(int i=0;i<result.n;i++)
         {
             System.out.println(result.arn[i]+" x "+result.arq[i]+" @ "+result.ap[i]+" = "+result.arp[i]);
         }
-        System.out.println("Your total Bill Without tax is = "+(result.sum));
-        System.out.println("Your bill with 5% GST is : "+(result.tt));
+        System.out.println("Subtotal (excluding tax): ₹"+(result.sum));
+        System.out.println("Gross amount (5% GST included): ₹"+(result.tt));
        
     }
     public static void main(String[] args)
@@ -125,4 +124,3 @@ public class Bill
 
     }
 }
-

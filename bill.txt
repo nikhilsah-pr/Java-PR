@@ -76,8 +76,4 @@ invoice(5)
     5--1,3
 }
 
-1- cobra bend ,  back band and forward band ,pushup
-2- cat abd cow pose, tadasana, push up
-3- leg press, hip flexor stretch, pushup and plank
-
 git update
