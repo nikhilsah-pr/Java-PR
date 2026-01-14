@@ -2,7 +2,7 @@ import java.util.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Bill
+public class SSBS
 {
     public static void pause(int millis) {
     try {
@@ -130,14 +130,14 @@ public class Bill
     }
     public static void disqty()
     {
-        Parcel result = Bill.accqty();
+        Parcel result = SSBS.accqty();
 
         System.out.println("Loading products...");
         pause(4000);
         clearScreen();
-        Bill.welcome();
+        SSBS.welcome();
         System.out.println();
-        Bill.time();
+        SSBS.time();
         System.out.println();
         System.out.println("Purchase Details");
         for(int i=0;i<result.n;i++)
@@ -158,11 +158,11 @@ public class Bill
     public static void main(String[] args)
     {
         Scanner in =new Scanner (System.in); 
-        Bill.header();
-        Bill.items();
+        SSBS.header();
+        SSBS.items();
         System.out.println("Processing...");
         pause(3000);
-        Bill.disqty();
+        SSBS.disqty();
         System.out.print("Press 0 to exit: ");
         in.nextInt();
         System.exit(0);
