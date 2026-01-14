@@ -103,6 +103,13 @@ public class Bill
         {           
             System.out.println("Enter product ID for item " +i+ " in your cart: ");
             q=in.nextInt();
+            if(q < 1 || q > 10)
+            {
+            System.out.println("Invalid Product ID");
+            i--;
+            continue;
+            }
+
             arn[n]=arrn[q-1];
             
             System.out.println("Enter no of "+arrn[q-1]+" quantities");
@@ -114,8 +121,9 @@ public class Bill
             sum+=(arrp[q-1]*q1);
             n++;
         }
-    
-        tt=sum+(sum*0.05);
+        final double GST_RATE = 0.05;
+        tt = sum + (sum * GST_RATE);
+
         //System.out.println("Your total Bill Without tax is = "+sum);
         //System.out.println("Your bill with 5% GST is : "+tt);
         return new Parcel(sum, tt, arn, arq, arp, ap, n);
